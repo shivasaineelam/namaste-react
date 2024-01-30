@@ -1,36 +1,3 @@
-import React from "react"
-import  ReactDOM  from "react-dom/client";
-
-const Navitems=()=>(
-    <div className="nav-items">
-        <ul className="items">
-            <li>home</li>
-            <li>orders</li>
-            <li>address</li>
-            <li>offers</li>
-            <li>cart</li>
-
-        </ul>
-    </div>
-)
-
-const Header=()=>(
-    <div className="header">
-        <div className="logo">
-        <img src="https://png.pngtree.com/template/20191014/ourmid/pngtree-pin-food-delivery-map-location-delivery-logo-concept-image_318151.jpg"/>
-        </div>
-        <div className="nav-items">
-        <ul className="items">
-            <li>home</li>
-            <li>orders</li>
-            <li>address</li>
-            <li>offers</li>
-            <li>cart</li>
-
-        </ul>
-    </div>
-    </div>
-)
 const obj=[
     {
       "info": {
@@ -1194,42 +1161,4 @@ const obj=[
       }
     }
 ]
-const Rescard=(props)=>
- {
-    const {resData}=props;
-     return (
-        
-    <div className="res-card" >
-        
-        
-        {<img  className="res-img" src={"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/"+resData.info.cloudinaryImageId}/> }
-        <h2>{resData.info.name}</h2>
-        <h3>{resData.info.cuisines.join(",")}</h3>
-        <h3>{resData.info.avgRating} rating</h3>
-        <h3>{resData.info.sla.deliveryTime} minutes</h3> 
-
-
-    </div>
-);
-};
-
-
-const Body=()=>(
-    <div className="body">
-        <div className="search">Search</div>
-        <div className="res-container">
-            {obj.map((ob)=>(<Rescard resData={ob}/>))}
-   
-
-        </div>
-
-
-    </div>
-)
-
-const AppLayout=()=>(<div className="app">
-    <Header/>
-    <Body/>
-</div>)
-const root=ReactDOM.createRoot(document.querySelector(".root"));
-root.render(<AppLayout/>);
+export default obj;
