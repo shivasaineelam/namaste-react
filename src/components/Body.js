@@ -62,7 +62,7 @@ const Body = () => {
       </button>
       <div className="res-container">
         {fillir &&
-          fillir.map((ob) => (
+          fillir.map((ob) => ( 
             <Link key={ob.info.id} to={"/restaurant/" + ob.info.id}>
               <Restaurant resData={ob} />
             </Link>

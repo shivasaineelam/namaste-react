@@ -50,3 +50,17 @@
   display: flex;
   flex-wrap: wrap;
 }
+.aboutc,
+.aboutf {
+  border: 3px solid black;
+  border-radius: 2 rem;
+}
+.btnc,
+.btnf {
+  margin: 20px;
+}
+.personimage {
+  width: 100px;
+  height: 100px;
+  background-size: cover;
+}
