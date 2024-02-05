@@ -1,28 +1,18 @@
 import React from "react";
-import User from "./User";
-import UserClass from "./UserClass";
 class About extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       count: null,
     };
-    console.log("constructor called");
   }
   async componentDidMount() {
     const data = await fetch("https://api.github.com/users/shivasaineelam");
     const json = await data.json();
     this.setState({ count: json });
-    console.log("component did mount");
   }
-  componentDidUpdate() {
-    console.log("component did upddate");
-  
-     console.log("shiva sai");
-    console.log(this.state.count);
-  }
+  componentDidUpdate() {}
   render() {
-    console.log("rendered");
     if (this.state.count === null) {
       return <div>loading</div>;
     }

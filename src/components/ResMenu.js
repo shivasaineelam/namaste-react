@@ -1,44 +1,36 @@
-import { useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
+import useResmenuhook from "../utils/useResmenuhook";
+import RestaurantCategory from "./RestaurantCategory";
+import { useState } from "react";
 
 function ResMenu() {
-  const [resinfo, setresinfo] = useState(null);
   const { resId } = useParams();
-  const getdata = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=17.406498&lng=78.47724389999999&restaurantId=" +
-        resId
-    );
-    const json = await data.json();
-    setresinfo(json);
-  };
-  useEffect(() => {
-    getdata();
-  }, []);
+  const resinfo = useResmenuhook(resId);
+  const [showindex, setshowindex] = useState(-1);
   if (resinfo === null) {
     return <Shimmer />;
   }
   const { cards } = resinfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR;
+  const { name, cuisines } = resinfo?.data?.cards[0]?.card?.card?.info;
+  const categories = cards.filter(
+    (c) =>
+      c?.card?.card?.["@type"] ===
+      "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+  );
   return (
-    <div>
-      <h1> {resinfo.data.cards[0].card.card.info.name}</h1>
-      <h1> {resinfo.data.cards[0].card.card.info.city}</h1>
-
-      {cards &&
-        cards.map((c, i) => (
-          <div key={i}>
-            <h1>{c.card.card.title}</h1>
-            {c?.card.card.itemCards &&
-              c.card.card.itemCards.map((item, i) => (
-                <div key={i}>
-                  <p>
-                    {item.card.info.name} {item.card.info.price / 100}
-                  </p>
-                </div>
-              ))}
-          </div>
-        ))}
+    <div className="text-center m-6 ">
+      <h1 className="font-bold my-6 text-2xl"> {name}</h1>
+      <p className="font-bold text-lg"> {cuisines.join(",")}</p>
+      {categories.map((c, ind) => (
+        <RestaurantCategory
+          key={ind}
+          data={c.card.card}
+          showitem={ind === showindex}
+          index={ind}
+          f={setshowindex}
+        />
+      ))}
     </div>
   );
 }
