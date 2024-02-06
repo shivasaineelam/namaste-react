@@ -28,7 +28,9 @@ function ResMenu() {
           data={c.card.card}
           showitem={ind === showindex}
           index={ind}
-          f={setshowindex}
+          f={(p1) => {
+            setshowindex(p1);
+          }}
         />
       ))}
     </div>

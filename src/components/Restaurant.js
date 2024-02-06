@@ -1,8 +1,7 @@
 import { IMG_URL } from "../utils/constants";
 const Restaurant = (props) => {
   const { resdata } = props;
-  const { name, cuisines, avgRating, costForTwo, cloudinaryImageId } =
-    resdata?.info;
+  const { name, cuisines, avgRating, cloudinaryImageId } = resdata?.info;
   return (
     <div className="w-[250px]   m-4 p-4 rounded-lg bg-gray-300 shadow-lg">
       {

@@ -29,7 +29,7 @@ const ItemList = (props) => {
                 add +
               </button>
               <img
-                className="rounded-lg hover:shadow-lg"
+                className="rounded-lg "
                 src={IMG_URL + item.card.info.imageId}
               ></img>
             </div>
