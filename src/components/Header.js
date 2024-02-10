@@ -7,7 +7,7 @@ import UserContext from "../utils/UserContext";
 const Header = () => {
   const [btn, setbtn] = useState("Login");
   const value = useonlinestatus();
-  const { loggedinUser, mode } = useContext(UserContext);
+  const { loggedinUser } = useContext(UserContext);
   return (
     <div className="flex justify-between bg-pink-200 shadow-lg">
       <Link to="/">

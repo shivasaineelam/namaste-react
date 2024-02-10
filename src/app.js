@@ -12,7 +12,9 @@ import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 const AppLayout = () => {
   const [username, setusername] = useState("");
   return (
-    <UserContext.Provider value={{ loggedinUser: username, setusername }}>
+    <UserContext.Provider
+      value={{ loggedinUser: username, setusername, mode: "light" }}
+    >
       <div className="app">
         <Header />
         <Outlet />
