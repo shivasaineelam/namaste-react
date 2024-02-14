@@ -4,11 +4,15 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useresinfo from "../utils/useresinfo";
 import UserContext from "../utils/UserContext";
+import { useDispatch, useSelector } from "react-redux";
+import { addname } from "../utils/userSlice";
 const Body = () => {
   const [inputtext, setinputtext] = useState("");
   const listofrestaurant = useresinfo();
   const [dummylistofrestaurant, setdummylistofrestaurant] = useState([]);
   const { loggedinUser, setusername } = useContext(UserContext);
+  const lastname = useSelector((store) => store.user.name);
+  const dispatch = useDispatch();
   useEffect(() => {
     setdummylistofrestaurant(listofrestaurant);
   }, [listofrestaurant]);
@@ -58,13 +62,25 @@ const Body = () => {
           </button>
         </div>
         <div>
-          <label>username :</label>
+          <label>firstname :</label>
           <input
             type="text"
             onChange={(e) => {
               setusername(e.target.value);
             }}
             value={loggedinUser}
+            className="w-60 m-2 p-2 border-2 border-solid border-black rounded-lg "
+            placeholder="enter your username"
+          />
+        </div>
+        <div>
+          <label>last name :</label>
+          <input
+            type="text"
+            onChange={(e) => {
+              dispatch(addname(e.target.value));
+            }}
+            value={lastname}
             className="w-60 m-2 p-2 border-2 border-solid border-black rounded-lg "
             placeholder="enter your username"
           />

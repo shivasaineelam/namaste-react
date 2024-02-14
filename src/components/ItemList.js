@@ -1,8 +1,11 @@
 import React from "react";
 import { IMG_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addItem } from "../utils/cartSlice";
 
 const ItemList = (props) => {
   const { data } = props;
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -23,9 +26,12 @@ const ItemList = (props) => {
             </p>
             <p className="text-xs mt-6 mb-4">{item.card.info.description}</p>
           </div>
-          {item.card.info.imageId && (
+          {
             <div className=" w-1/4 ">
-              <button className="absolute  p-2 rounded-lg bg-white  text-green-500">
+              <button
+                className="absolute  p-2 rounded-lg bg-white  text-green-500"
+                onClick={() => dispatch(addItem(item))}
+              >
                 add +
               </button>
               <img
@@ -33,7 +39,7 @@ const ItemList = (props) => {
                 src={IMG_URL + item.card.info.imageId}
               ></img>
             </div>
-          )}
+          }
         </div>
       ))}
     </div>
